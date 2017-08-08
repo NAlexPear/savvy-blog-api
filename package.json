@@ -1,0 +1,24 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "A quick API mock-up for Savvy Coders",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "json-server index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NAlexPear/savvy-blog-api.git"
+  },
+  "author": "Alex Pearson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NAlexPear/savvy-blog-api/issues"
+  },
+  "homepage": "https://github.com/NAlexPear/savvy-blog-api#readme",
+  "dependencies": {
+    "faker": "^4.1.0",
+    "json-server": "^0.12.0"
+  }
+}
