@@ -1,22 +1,18 @@
 var faker = require('faker');
+var _ = require('lodash');
 
 function generateSellingPoints(){
-  var sellingPoints = new Array(3);
-
-  return sellingPoints
+  return _.range(3)
     .fill('')
     .map(() => faker.lorem.sentence())
 }
 
 function generateItems(type){
-  var items = new Array(20);
-
-  return items
-    .fill({})
-    .map(item => Object.assign(
-      item,
+  return _.range(20)
+    .map(id => (
       {
         type,
+        "id": id + 1,
         "name": faker.lorem.sentence(),
         "author": faker.fake("{{name.firstName}} {{name.lastName}}"),
         "picture": faker.image.imageUrl(),
