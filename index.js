@@ -43,26 +43,23 @@ var books = [
     }
 ];
 
-function generateSellingPoints(){
-    return _.pipe(
-        _.range,
-        _.fill( "" ),
-        _.map( () => faker.lorem.sentence() )
-    )( 3 );
-}
+var generateSellingPoints = _.pipe(
+    _.range( 0 ),
+    _.map( () => faker.lorem.sentence() )
+);
 
 function generateItems( type ){
     return _.pipe(
-        _.range,
+        _.range( books.length + 1 ),
         _.map( ( id ) => (
             {
                 type,
-                "id": id + books.length,
+                id,
                 "name": faker.lorem.sentence(),
                 "author": faker.fake( "{{name.firstName}} {{name.lastName}}" ),
                 "picture": faker.image.imageUrl(),
                 "price": faker.commerce.price(),
-                "sellingPoints": generateSellingPoints()
+                "sellingPoints": generateSellingPoints( 3 )
             }
         ) )
     )( 20 );
