@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres:alpine
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_DB: bookstore_db
+      POSTGRES_USER: bookstore_user
+      POSTGRES_PASSWORD: mysecretpassword
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  api:
+    image: node
+    command: /bin/bash -c "npm install && npx knex migrate:latest && npm start"
+    working_dir: /usr/src/bookstore
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    volumes:
+      - source: .
+        target: /usr/src/bookstore
+        type: bind
+      - source: node_modules
+        target: /usr/src/bookstore/node_modules
+        type: volume
+
+volumes:
+  db-data:
+  node_modules:
