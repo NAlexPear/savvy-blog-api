@@ -7,8 +7,22 @@ exports.up = async function migrateUp( knex ){
                 table.increments( "id" ).primary();
                 table.string( "creator" );
                 table.string( "image" );
+                table.float( "price" );
+                table.specificType( "selling_points", "text[]" ).default( "{}" );
+                table.string( "title" );
                 table.enu( "type", [ "book" ] );
-                table.specificType( "selling_points", "jsonb[]" ).default( "{}" );
+            }
+        )
+        .createTableIfNotExists(
+            "album",
+            ( table ) => {
+                table.increments( "id" ).primary();
+                table.string( "creator" );
+                table.string( "image" );
+                table.float( "price" );
+                table.specificType( "selling_points", "text[]" ).default( "{}" );
+                table.string( "title" );
+                table.enu( "type", [ "album" ] );
             }
         );
 };
@@ -16,5 +30,6 @@ exports.up = async function migrateUp( knex ){
 exports.down = function migrateDown( knex ){
     return knex
         .schema
-        .dropTableIfExists( "books" );
+        .dropTableIfExists( "book" )
+        .dropTableIfExists( "album" );
 };

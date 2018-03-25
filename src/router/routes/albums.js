@@ -1,38 +1,38 @@
-var { Books } = require( "../../models" );
+var { Albums } = require( "../../models" );
 var { snakeCase, mapKeys } = require( "lodash/fp" );
 
-module.exports = function bookRouter( router ){
+module.exports = function albumRouter( router ){
     router.get(
-        "/books",
+        "/albums",
         async( req, res ) => {
-            var books = await Books.query();
+            var albums = await Albums.query();
 
-            res.send( books || [] );
+            res.send( albums || [] );
         }
     );
 
     router.get(
-        "/books/:id",
+        "/albums/:id",
         async( req, res ) => {
             var { id } = req.params;
-            const book = await Books
+            const album = await Albums
                 .query()
                 .findById( id );
 
-            res.send( book || [] );
+            res.send( album || [] );
         }
     );
 
     router.post(
-        "/books",
+        "/albums",
         async( req, res ) => {
             var { body } = req;
 
-            var book = await Books
+            var album = await Albums
                 .query()
                 .insert( mapKeys( snakeCase )( body ) );
 
-            res.send( book );
+            res.send( album );
         }
     );
 };

@@ -14,15 +14,27 @@ module.exports = class Product extends Model{
                 "image": {
                     "type": "string"
                 },
+                "price": {
+                    "type": "float"
+                },
                 "selling_points": {
                     "type": "array"
+                },
+                "title": {
+                    "type": "string"
                 },
                 "type": {
                     "type": "string"
                 }
             },
 
-            "required": [ "creator", "image", "type" ]
+            "required": [
+                "creator",
+                "image",
+                "price",
+                "title",
+                "type"
+            ]
         };
     }
 };
