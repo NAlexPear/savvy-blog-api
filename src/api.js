@@ -1,4 +1,5 @@
 var bodyParser = require( "body-parser" );
+var cors = require( "cors" );
 var express = require( "express" );
 var { Model } = require( "objection" );
 var router = require( "./router" );
@@ -8,6 +9,7 @@ module.exports = class Api{
         Model.knex( knex );
 
         this.app = express()
+            .use( cors() )
             .use( bodyParser.json() )
             .use( router );
     }
