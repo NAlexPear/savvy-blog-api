@@ -35,4 +35,17 @@ module.exports = function bookRouter( router ){
             res.send( book );
         }
     );
+
+    router.delete(
+        "/books/:id",
+        async( req, res ) => {
+            var { id } = req.params;
+
+            await Books
+                .query()
+                .deleteById( id );
+
+            res.status( 200 ).send();
+        }
+    );
 };

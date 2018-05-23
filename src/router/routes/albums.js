@@ -35,4 +35,17 @@ module.exports = function albumRouter( router ){
             res.send( album );
         }
     );
+
+    router.delete(
+        "/albums/:id",
+        async( req, res ) => {
+            var { id } = req.params;
+
+            await Albums
+                .query()
+                .deleteById( id );
+
+            res.status( 200 ).send();
+        }
+    );
 };
